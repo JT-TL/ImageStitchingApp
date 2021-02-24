@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/pictures">
+        <file>resource/Sigmund_Freud,_by_Max_Halberstadt_(cropped).jpg</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>icon/puzzle.png</file>
+        <file>icon/puzzle2.png</file>
+        <file>icon/camera.png</file>
+        <file>icon/home.png</file>
+        <file>icon/yin-yang.png</file>
+        <file>icon/system-monitor.png</file>
+        <file>icon/arrow.png</file>
+        <file>icon/add-file-icon-18.jpg</file>
+        <file>icon/open-archive-svgrepo-com.svg</file>
+        <file>icon/pngwing.com.png</file>
+        <file>icon/tongue.png</file>
+    </qresource>
+</RCC>
