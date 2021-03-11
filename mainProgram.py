@@ -5,6 +5,7 @@ from PySide2.QtGui import QIcon
 from PySide2.QtCore import Qt
 from MainWindow import Ui_MainWindow
 from imagestitching import OralImgStitch
+import matplotlib.pyplot as plt
 
 class MainProgram(QMainWindow):
 	def __init__(self):
@@ -57,15 +58,17 @@ class MainProgram(QMainWindow):
 		stitcher = OralImgStitch(process_img_list)
 		self.ui.progressBar.setValue(92)
 		try:
+			print(self.ui.stitch_mode.currentIndex())
 			output_img, status = stitcher.stitchImage(self.ui.stitch_mode.currentIndex())
-			# print("debug")
 			self.ui.progressBar.setVisible(False)
 			if status != 0:
 				self.stitching_crashHandler(status)
-				# print(status)
 		except Exception as e:
 			print(e)
 			self.stitching_crashHandler(3)
+		plt.imshow(output_img)
+		plt.axis('off')
+		plt.show()
 		self.ui.progressBar.setVisible(False)
 		self.ui.listWidget.clearSelection()
 		self.ui.check_box_select_all.setCheckState(Qt.Unchecked)
@@ -82,10 +85,10 @@ class MainProgram(QMainWindow):
 	def stitching_crashHandler(self, status):
 		dlg = QMessageBox(self)
 		dlg.setWindowTitle("拼接失败")
-		fail_info = ["快逃！",
+		fail_info = ["RUN！",
 			"所选图片特征点不足无法拼接。\n请重新选择或添加更多图片！",
 			"所选图片视角变化过大。\n请缩短扫描间距再重新拼接！",
-			"未知错误，请重新选择！",
+			"未知错误，请重新选择图片或检查是否包含中文路径！",
 			"请先选择所要拼接的图片！"]
 		dlg.setText(fail_info[status])
 		dlg.setStandardButtons(QMessageBox.Yes)
