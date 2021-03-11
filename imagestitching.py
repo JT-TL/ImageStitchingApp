@@ -1,5 +1,5 @@
 from cv2 import (
-	imread, imshow, waitKey, Stitcher_create, Stitcher_SCANS, Stitcher_PANORAMA
+	imread, imshow, waitKey, Stitcher_create, Stitcher_SCANS, Stitcher_PANORAMA, split, merge
 )
 
 class OralImgStitch(object):
@@ -13,9 +13,12 @@ class OralImgStitch(object):
 
 	def stitchImage(self, stitch_mode):
 		self.stitcher = Stitcher_create(Stitcher_SCANS if not stitch_mode else Stitcher_PANORAMA)
-		(self.status, self.stitched) = self.stitcher.stitch(self.images)
-		if self.status == 0:
-			imshow("result", self.stitched)
-			waitKey(0)
-		return self.stitched, self.status
+		(status, stitched) = self.stitcher.stitch(self.images)
+		# 使用opencv查看较大尺寸图片时非常不友好，这里替换成了使用matplotlib查看并保存
+		# if self.status == 0:
+		# 	imshow("result", self.stitched)
+		# 	waitKey(0)
+		b,g,r = split(stitched)
+		output = merge([r,g,b])
+		return output, status
 		
