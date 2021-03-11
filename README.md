@@ -9,6 +9,8 @@
 - OpenCV
 - Matplotlib
 
+注意：所选图片路径不能含有中文字符！
+
 ![alt text](https://github.com/JT-TL/ImageStitchingApp/blob/main/overview.png)
 
 
