@@ -7,6 +7,7 @@
 
 - PySide2
 - OpenCV
+- Matplotlib
 
 ![alt text](https://github.com/JT-TL/ImageStitchingApp/blob/main/overview.png)
 
